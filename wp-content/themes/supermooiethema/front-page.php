@@ -11,8 +11,9 @@ $latest_posts = new WP_Query(
 ?>
 <main class="home-page">
     <section class="home-intro">
-        <h1>Welkom op mijn website</h1>
-        <p>Kijk gerust rond.</p>
+        <p class="home-kicker">Persoonlijke website</p>
+        <h1><?php echo esc_html(get_bloginfo('name')); ?></h1>
+        <p><?php echo esc_html(get_bloginfo('description') ?: 'Welkom op mijn website. Hier deel ik mijn verhalen, projecten en interesses.'); ?></p>
     </section>
 
     <section class="home-posts" aria-labelledby="latest-posts-title">

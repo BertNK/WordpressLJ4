@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
-    <title>Document</title>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 </head>
-<body>
-    <nav>
-        <div class="nav_left">
-            <a class="nav_a_link" href="<?php echo home_url(); ?>">Home</a>
-            <a class="nav_a_link" href="<?php echo home_url('/about-me'); ?>">About Me</a>
-        </div>
-
-        <div class="nav_right">
-            <?php
-            if (is_user_logged_in()) {
-                echo '<span class="nav_a_link" style="color: blue";">Welcome, ' . wp_get_current_user()->display_name . '</span>';
-                echo '<a class="nav_a_link" href="' . wp_logout_url(home_url()) . '">Logout</a>';
-            } else {
-                echo '<a class="nav_a_link" href="' . wp_login_url() . '">Login</a>';
-            }
-            ?>
-        </div>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<header class="site-header">
+    <a class="site-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+    <nav class="site-nav" aria-label="Hoofdnavigatie">
+        <?php if (has_nav_menu('primary')) : ?>
+            <?php wp_nav_menu(array('theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu')); ?>
+        <?php else : ?>
+            <ul class="menu"><li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li><?php wp_list_pages(array('title_li' => '', 'depth' => 1)); ?></ul>
+        <?php endif; ?>
     </nav>
-</body>
-</html>
+</header>
