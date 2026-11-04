@@ -9,6 +9,7 @@
 <?php wp_body_open(); ?>
 <header class="site-header">
     <a class="site-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+    <a class="archive-button" href="<?php echo esc_url(home_url('/archive/')); ?>">Bekijk archief</a>
     <nav class="site-nav" aria-label="Hoofdnavigatie">
         <?php if (has_nav_menu('primary')) : ?>
             <?php wp_nav_menu(array('theme_location' => 'primary', 'container' => false, 'menu_class' => 'menu')); ?>
